@@ -4,6 +4,9 @@ const http = require('http').createServer(app);
 const config = require('./config');
 const dbHelper = require('./utilities/db_helper');
 
+/** Import routes */
+app.use('/', require('./routes/index'));
+app.use('/film', require('./routes/film'));
 
 /** Connect to database */
 dbHelper.connect().then((response) => {
