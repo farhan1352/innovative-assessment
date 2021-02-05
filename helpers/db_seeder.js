@@ -1,6 +1,9 @@
 const filmRepo = require('../repos/film_repo');
 let mFilmRepo = new filmRepo();
 
+const path = require('path');
+const fs = require('fs');
+
 class DBSeeder {
 
     /** Seed the db */
@@ -9,27 +12,25 @@ class DBSeeder {
     }
 
     /** To seed film collection */
-    seedFilms = () => {
-        let film1 = {
-            name: 'Film Title 1', slug: 'film-title-1', description: 'This is the description of film title 1', release_date: new Date(), rating: 3,
-            ticket_price: 15, country: 'Pakistan', genre: ['Genre 1', 'Genre 2', 'Genre 3'], photo: 'https://s3bucket-url'
+    seedFilms = async() => {
+        await mFilmRepo.deleteAll();
+        
+        var jsonPath = path.join(__dirname, '..', 'seeders', 'films.json');
+        const filmsCollection = fs.readFileSync(path.resolve(jsonPath), 'utf-8');
+        let filmsArray = JSON.parse(filmsCollection);
+        if(filmsArray.length > 0){
+            filmsArray.forEach(film =>  {
+                /** converting string date object into the iso date format */
+                film.release_date = new Date(film.release_date.$date);
+
+                if(film.last_modified){
+                    film.last_modified = new Date(film.last_modified);
+                }
+
+                mFilmRepo.create(film);
+            });
         }
-
-        let film2 = {
-            name: 'Film Title 2', slug: 'film-title-2', description: 'This is the description of film title 2', release_date: new Date(), rating: 5,
-            ticket_price: 10, country: 'USA', genre: ['Genre 10', 'Genre 12', 'Genre 15'], photo: 'https://s3bucket-url'
-        }
-
-        let film3 = {
-            name: 'Film Title 3', slug: 'film-title-3', description: 'This is the description of film title 3', release_date: new Date(), rating: 4,
-            ticket_price: 18, country: 'Austrailia', genre: ['Genre 31', 'Genre 32', 'Genre 33'], photo: 'https://s3bucket-url'
-        }
-
-        mFilmRepo.create(film1);
-        mFilmRepo.create(film2);
-        mFilmRepo.create(film3);
-
-        console.log('Database successfully seeded with 3 films');
+        console.log(`Database successfully seeded with ${filmsArray.length} films`);
     }
 }
 

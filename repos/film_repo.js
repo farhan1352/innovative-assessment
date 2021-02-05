@@ -36,6 +36,14 @@ class FilmRepo {
     async deleteOne(id) {
         return await film.deleteOne({_id: id});
     }
+
+    /**
+     * To delete film from database
+     * @param {Object} query - query db to delete film
+     */
+    async deleteAll(id) {
+        return await film.deleteMany({});
+    }
 }
 
 module.exports = FilmRepo;
