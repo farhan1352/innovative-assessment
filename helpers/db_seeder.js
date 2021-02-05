@@ -11,7 +11,7 @@ class DBSeeder {
         this.seedFilms();
     }
 
-    /** To seed film collection */
+    /** Seed film collection */
     seedFilms = async() => {
         await mFilmRepo.deleteAll();
         

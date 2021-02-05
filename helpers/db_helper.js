@@ -21,6 +21,8 @@ class DBHelper {
     /** To get schema register */
     registerSchema = () => {
         require('../models/film');
+        require('../models/user');
+        require('../models/auth_token');
     }
 }
 

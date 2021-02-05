@@ -17,8 +17,15 @@ class FilmRepo {
      * To get film from database
      * @param {Object} query - query db to get film
      */
-    async retrieve(query) {
-        return await film.find(query);
+    async retrieveAll() {
+        return await film.find({});
+    }
+
+    /**
+     * To get films from database via slug
+     */
+    async retrieveBySlug(slug) {
+        return await film.find({slug: slug});
     }
 
     /**
@@ -26,6 +33,7 @@ class FilmRepo {
      * @param {Object} query - query db to update film
      */
     async updateOne(id, data) {
+        data.last_modified = new Date();
         return await film.updateOne({_id: id}, data);
     }
 

@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const mFilmsContr = require('../controllers/film_controller');
-const filmController = new mFilmsContr();
+const filmController = require('../controllers/film_controller');
+const mFilmController = new filmController();
 
-router.post('/', filmController.createFilm);
-router.get('/', filmController.retrieveAllFilms);
-router.get('/:slug', filmController.retrieve);
+const authMw = require('../middlewares/auth');
+let mAuth = new authMw();
 
-router.put('/:id', filmController.update);
-router.delete('/:id', filmController.delete);
+router.post('/', mAuth.authenticateToken, mFilmController.createFilm);
+router.get('/', mAuth.authenticateToken, mFilmController.retrieveAllFilms);
+router.get('/:slug', mAuth.authenticateToken, mFilmController.retrieve);
+
+router.put('/:id', mAuth.authenticateToken, mFilmController.update);
+router.delete('/:id', mAuth.authenticateToken, mFilmController.delete);
 
 module.exports = router;

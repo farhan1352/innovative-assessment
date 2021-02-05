@@ -2,10 +2,16 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const config = require('./config');
+const bodyparser = require('body-parser');
 
 /** DB Helper */
 const dbHelper = require('./helpers/db_helper');
 let mHelper = new dbHelper();
+
+
+/** Middlewares */
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: false}));
 
 
 /** Connect to database */
@@ -31,6 +37,8 @@ startListening = () => {
 importRoutes = () => {
     app.use('/', require('./routes/index'));
     app.use('/films', require('./routes/film'));
+    app.use('/user', require('./routes/user'));
+    app.use('/auth', require('./routes/auth'));
 }
 
 /** Seed database */
