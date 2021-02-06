@@ -1,14 +1,14 @@
 # Innovative Assessment
 The repo is for the assessment of innovative solution.
 
-# Purpose
+## Purpose
 The purpose of the repository is the assessment for the post of senior backend developer.
 
-# Documentation
+## Documentation
 All the code base has been commented with well known coding standards. Following coding standard has been used.
 https://github.com/airbnb/javascript
 
-# API Auth
+## API Auth
 All the APIs are secured with JWT Authentication. To create, edit, delete films; one has to authenticate himself/herself. The access token has the expiry of 1 hour.
 
 ## Usage
@@ -24,7 +24,7 @@ I have written few test cases for now. Due to time constraints I couldn't write 
 npm test
 ```
 
-# Time
+## Time
 I got the assessement on Feb 3rd. It took the following hours to complete.    
 4th Feb - 2 hours     
 5th Feb - 6 hours     
