@@ -25,10 +25,10 @@ npm test
 ```
 
 # Time
-I got the assessement on Feb 3rd. It took the following hours to complete.
-4th Feb - 2 hours
-5th Feb - 6 hours
-6th Feb - 2 hours
+I got the assessement on Feb 3rd. It took the following hours to complete.    
+4th Feb - 2 hours     
+5th Feb - 6 hours     
+6th Feb - 2 hours     
 
 ## License
 No licence.
