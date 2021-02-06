@@ -4,7 +4,7 @@
   "description": "An assessment for the post of Senior Backend Developer",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --reporter spec",
     "start": "node app.js"
   },
   "repository": {
@@ -19,7 +19,10 @@
     "mongoose": "^5.8.5",
     "mongoose-shortid-nodeps": "^0.6.5",
     "jsonwebtoken": "8.5.1",
-    "bcryptjs": "~2.4.3"
+    "bcryptjs": "~2.4.3",
+    "mocha": "^8.2.1",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0"
   },
   "bugs": {
     "url": "https://github.com/farhan1352/innovative-assessment/issues"

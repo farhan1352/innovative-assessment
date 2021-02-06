@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const config = require('../config');
 
-
 class DBHelper {
 
     /**Connection to mongo db */
@@ -23,6 +22,14 @@ class DBHelper {
         require('../models/film');
         require('../models/user');
         require('../models/auth_token');
+    }
+
+    /** Seed database */
+    seed = () => {
+        /** DB Seeder */
+        const seeder = require('../helpers/db_seeder');
+        let mSeeder = new seeder();
+        mSeeder.seed();
     }
 }
 

@@ -18,7 +18,7 @@ app.use(bodyparser.urlencoded({extended: false}));
 mHelper.connect().then((response) => {
     console.log(response);
     mHelper.registerSchema();
-    seed();
+    mHelper.seed();
     startListening();
 }).catch((err) => {
     console.log(err);
@@ -39,12 +39,4 @@ importRoutes = () => {
     app.use('/films', require('./routes/film'));
     app.use('/user', require('./routes/user'));
     app.use('/auth', require('./routes/auth'));
-}
-
-/** Seed database */
-seed = () => {
-    /** DB Seeder */
-    const seeder = require('./helpers/db_seeder');
-    let mSeeder = new seeder();
-    mSeeder.seed();
 }
